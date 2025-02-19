@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokémon Capture Tracker</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #2a2a2a;
+            color: #ffffff;
+            padding: 20px;
+        }
+        .table tbody td img {
+            height: 64px;
+            width: auto;
+        }
+        .NotAvailable {
+            color: #2fa432;
+        }
+        .AvailableForGiveaway {
+            color: #c1a518;
+        }
+        .NotAvailable {
+            color: #ad1e1e;
+        }
+        .count {font-size: 30px;
+        }
+        /* Noir et blanc */
+        .black-and-white {filter: grayscale(100%);
+          -webkit-filter: grayscale(100%);
+        }
+
+        /* Tout noir (seulement la forme) */
+        .all-black {filter: brightness(0%);
+          -webkit-filter: brightness(0%);
+        }
+
+        /* Texte plus grand dans <td> */
+        .large-text td {font - size: 20px; }
+
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-dark bg-dark" style="justify-content: center; background-color: #2a2a2a;">
+      <form class="form-inline">
+        <a class="btn btn-sm btn-outline-secondary" href="main.html" style="color: white;">Accueil Pokédex</a>
+        <a class="btn btn-sm btn-outline-secondary" href="availablepokemon.html" style="color: white;">Pokédex Infos</a>
+        <a class="btn btn-sm btn-outline-secondary" href="pokestats.html" style="color: white;">Classements</a>
+        <a class="btn btn-sm btn-outline-secondary" href="buypokemon.html" style="color: white;">Acheter Pokémon</a>
+        <a class="btn btn-sm btn-outline-secondary" href="scrappokemon.html" style="color: white;">Scrap Pokémon</a>
+      </form>
+    </nav><br><br><table class="table table-dark table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Pokémon</th>
+                <th>Sprite Normal</th>
+                <th>Prix Normal</th>
+                <th>Acheter normal</th>
+                <th>Sprite Shiny</th>
+                <th>Prix Shiny</th>
+                <th>Acheter Shiny</th>
+            </tr>
+        </thead>
+        <tbody>
+<tr>
+                <td>Bulbizarre</td>
+                <td><img style="height: 96px; width: auto;" src="https://img.pokemondb.net/sprites/black-white/anim/normal/bulbasaur.gif" alt="Normal Sprite"></td>
+                <td>10</td>
+                <td><button data-copy="!buy bulbizarre normal" onclick="copyToClipboard(this)" type="button" class="btn btn-primary">Copier commande</button></td>
+                <td><img style="height: 96px; width: auto;" src="https://img.pokemondb.net/sprites/black-white/anim/shiny/bulbasaur.gif" alt="Shiny Sprite"></td>
+                <td>/</td>
+                <td><button data-copy="!buy bulbizarre shiny" disabled>Copier commande</button></td>
+            </tr></table><br>
+
+<script>
+        function copyToClipboard(button) {
+    const textToCopy = button.getAttribute("data-copy");
+
+    if (!navigator.clipboard) {
+        // Fallback for browsers that don't support the Clipboard API
+        const textArea = document.createElement("textarea");
+        textArea.value = textToCopy;
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        try {
+            document.execCommand("copy");
+            alert("Texte copié : " + textToCopy);
+        } catch (err) {
+            alert("Erreur lors de la copie dans le presse-papiers : " + err);
+        }
+        document.body.removeChild(textArea);
+        return;
+    }
+
+    navigator.clipboard.writeText(textToCopy).then(() => {
+        alert("Texte copié : " + textToCopy);
+    }).catch(err => {
+        alert("Erreur lors de la copie dans le presse-papiers : " + err);
+    });
+}
+    </script>
+
+<br><br>
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
